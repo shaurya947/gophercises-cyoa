@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CYOA Game</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Immerse yourself in an adventure of your own making">
+	<style>
+		body {background-color:#ffffff;background-repeat:no-repeat;background-position:top left;background-attachment:fixed;}
+		h1{font-family:Arial, sans-serif;color:#000000;background-color:#ffffff;}
+		p {font-family:Georgia, serif;font-size:14px;font-style:normal;font-weight:normal;color:#000000;background-color:#ffffff;}
+	</style>
+</head>
+<body>
+	<h1> {{ .Title }} </h1>
+	
+	{{ range .Story }}
+		<p>{{ . }}</p>
+	{{ end }}
+
+	{{ if .Options }}
+		<h2>Select an option:</h2>
+		<ul>
+			{{ range .Options }}
+				<a href="/{{ .Arc }}"><li>{{ .Text }}</li></a>
+			{{ end }}
+		</ul>
+	{{ else }}
+		<h2>The End</h2>
+	{{ end }}
+</body>
+</html>

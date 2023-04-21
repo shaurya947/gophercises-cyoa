@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"gophercises-cyoa/story"
+	"html/template"
+	"net/http"
 	"os"
 )
 
@@ -22,7 +24,9 @@ func main() {
 		exit(fmt.Sprintln("Error parsing json:", err))
 	}
 
-	fmt.Printf("%+v", story)
+	tmpl := template.Must(template.ParseFiles("index.gohtml"))
+	handler := StoryWebHandler{story: story, tmpl: tmpl}
+	http.ListenAndServe(":8080", &handler)
 }
 
 func exit(message string) {
