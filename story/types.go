@@ -1,6 +1,8 @@
 package story
 
-type StoryArcObj struct {
+type Story map[string]StoryArc
+
+type StoryArc struct {
 	Title   string
 	Story   []string
 	Options []StoryArcOption

@@ -2,10 +2,10 @@ package story
 
 import "encoding/json"
 
-func ParseJsonBlob(blob []byte) (map[string]StoryArcObj, error) {
-	rootStoryMap := make(map[string]StoryArcObj)
-	if err := json.Unmarshal(blob, &rootStoryMap); err != nil {
+func ParseJsonBlob(blob []byte) (Story, error) {
+	story := make(Story)
+	if err := json.Unmarshal(blob, &story); err != nil {
 		return nil, err
 	}
-	return rootStoryMap, nil
+	return story, nil
 }
